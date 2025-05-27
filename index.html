@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RASR Studios Inc. - Company in a Box | Dedicated Offshore Teams</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Professional Color Scheme */
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2d5396;
+            --accent-color: #3182ce;
+            --success-color: #38a169;
+            --warning-color: #d69e2e;
+            --danger-color: #e53e3e;
+            --dark-color: #2d3748;
+            --light-bg: #f7fafc;
+            --white: #ffffff;
+            --gray-100: #f7fafc;
+            --gray-200: #edf2f7;
+            --gray-500: #718096;
+            --gray-600: #4a5568;
+            --gray-800: #2d3748;
+            --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --hover-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Header */
+        header {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        /* Hero Section - Slightly Less Than Full Page */
+        .hero {
+            height: 92vh;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover;
+            opacity: 0.15;
+            z-index: 1;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            opacity: 0.8;
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            max-width: 800px;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 0;
+            right: 0;
+            z-index: 3;
+            color: white;
+            text-align: center;
+            opacity: 0;
+            animation: fadeInUp 1s ease 1s forwards;
+            margin: 0 auto;
+        }
+
+        .scroll-indicator a {
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .scroll-indicator i {
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+            display: block;
+        }
+
+        .scroll-indicator p {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+            color: white;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.3s forwards;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.6s forwards;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            padding: 18px 35px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: var(--card-shadow);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--hover-shadow);
+            background: var(--secondary-color);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .cta-secondary:hover {
+            background: white;
+            color: var(--primary-color);
+        }
+
+        /* Section Dividers */
+        .section-divider {
+            height: 30px;
+            background: linear-gradient(135deg, transparent 0%, rgba(49, 130, 206, 0.1) 50%, transparent 100%);
+            position: relative;
+        }
+
+        .section-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 4px;
+            background: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        /* Value Propositions - Modernized */
+        .value-props {
+            padding: 60px 0;
+            background: var(--light-bg);
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.3rem;
+            color: var(--gray-600);
+            margin-bottom: 2.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .props-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .prop-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            transition: all 0.4s ease;
+            border: 1px solid var(--gray-200);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .prop-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent-color);
+        }
+
+        .prop-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .prop-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--accent-color);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .prop-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .prop-card p {
+            color: var(--gray-600);
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        /* Comparison Section */
+        .comparison {
+            padding: 60px 0;
+            background: white;
+            position: relative;
+        }
+
+        .comparison::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover;
+            opacity: 0.03;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .comparison-card {
+            padding: 2.5rem;
+            border-radius: 12px;
+            position: relative;
+            box-shadow: var(--card-shadow);
+        }
+
+        .traditional {
+            background: #fef5e7;
+            border-left: 6px solid var(--danger-color);
+        }
+
+        .company-box {
+            background: #f0fff4;
+            border-left: 6px solid var(--success-color);
+        }
+
+        .comparison-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .comparison-card ul {
+            list-style: none;
+        }
+
+        .comparison-card li {
+            padding: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .traditional li::before {
+            content: '✗';
+            position: absolute;
+            left: 0;
+            color: var(--danger-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .company-box li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Team Section */
+        .team {
+            padding: 60px 0;
+            background: var(--light-bg);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: all 0.4s ease;
+            text-align: center;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .team-photo {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .team-info {
+            padding: 2rem;
+        }
+
+        .team-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .team-title {
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .team-bio {
+            color: var(--gray-600);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            font-size: 0.9rem;
+        }
+
+        .team-links {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+        }
+
+        .team-links a {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            padding: 0.8rem;
+            border-radius: 8px;
+            background: var(--light-bg);
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .team-links a:hover {
+            background: var(--accent-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Results Section - Fixed Colors */
+        .results {
+            padding: 60px 0;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .results::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover;
+            opacity: 0.1;
+        }
+
+        .results .section-title {
+            color: white;
+        }
+
+        .results .section-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .result-card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 2.5rem 2rem;
+            border-radius: 12px;
+            backdrop-filter: blur(20px);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .result-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .result-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .result-card p {
+            color: white;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        /* Process Section with Flowchart */
+        .process {
+            padding: 60px 0;
+            background: white;
+            position: relative;
+        }
+
+        .process-flowchart {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 2.5rem 0;
+            position: relative;
+        }
+
+        .process-step {
+            text-align: center;
+            flex: 1;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-circle {
+            width: 80px;
+            height: 80px;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 0 auto 1.5rem;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+        }
+
+        .step-circle:hover {
+            transform: scale(1.1);
+            background: var(--secondary-color);
+        }
+
+        .process-step h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .process-step p {
+            color: var(--gray-600);
+            line-height: 1.6;
+            max-width: 280px;
+            margin: 0 auto;
+            font-size: 0.95rem;
+        }
+
+        /* Flowchart Arrows */
+        .process-flowchart::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 15%;
+            right: 15%;
+            height: 2px;
+            background: var(--accent-color);
+            z-index: 1;
+        }
+
+        .process-arrow {
+            position: absolute;
+            top: 32px;
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 16px solid var(--accent-color);
+            z-index: 1;
+        }
+
+        .arrow-1 {
+            left: 40%;
+            transform: rotate(90deg);
+        }
+
+        .arrow-2 {
+            right: 40%;
+            transform: rotate(90deg);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 60px 0;
+            background: var(--light-bg);
+            text-align: center;
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 12px;
+            margin-top: 2.5rem;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-info::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=2126&q=80') center/cover;
+            opacity: 0.1;
+        }
+
+        .contact-info > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .contact-info p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info a {
+            color: var(--warning-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--primary-color);
+                flex-direction: column;
+                padding: 1rem 0;
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: all 0.3s ease;
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .process-flowchart {
+                flex-direction: column;
+                gap: 3rem;
+            }
+            
+            .process-flowchart::before,
+            .process-arrow {
+                display: none;
+            }
+            
+            .container {
+                padding: 0 15px;
+            }
+
+            .props-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .props-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">RASR Studios Inc.</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#results">Results</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section - Slightly Less Than Full Page -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Company in a Box</h1>
+                <p>Revolutionize your business staffing strategy with dedicated offshore teams that seamlessly integrate as in-house personnel. Experience enterprise-grade talent acquisition with complete compliance management and achieve sustainable 40-50% cost optimization.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="cta-button">Schedule Consultation</a>
+                    <a href="#services" class="cta-button cta-secondary">Explore Solutions</a>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <a href="#services">
+                    <i class="fas fa-chevron-down"></i>
+                    <p>Scroll to explore</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
+
+    <!-- Value Propositions - Modernized -->
+    <section class="value-props" id="services">
+        <div class="container">
+            <h2 class="section-title fade-in">Strategic Advantages</h2>
+            <p class="section-subtitle fade-in">Our proprietary model delivers unparalleled value through innovative team integration and comprehensive operational support</p>
+            <div class="props-grid">
+                <div class="prop-card fade-in">
+                    <div class="prop-icon">
+                        <i class="fas fa-users-cog"></i>
+                    </div>
+                    <h3>Exclusive Dedicated Teams</h3>
+                    <p>Deploy highly skilled professionals exclusively committed to your organization's objectives. Unlike conventional outsourcing models that distribute resources across multiple clients, our teams function as integral extensions of your workforce while we manage all employment complexities.</p>
+                </div>
+                <div class="prop-card fade-in">
+                    <div class="prop-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>Seamless Operational Integration</h3>
+                    <p>Achieve complete workflow synchronization through direct integration into your existing systems, processes, and communication infrastructure. Eliminate intermediary management layers and establish direct collaborative relationships with your dedicated professionals.</p>
+                </div>
+                <div class="prop-card fade-in">
+                    <div class="prop-icon">
+                        <i class="fas fa-user-check"></i>
+                    </div>
+                    <h3>Strategic Team Curation</h3>
+                    <p>Maintain complete authority over team composition and skill alignment. Our collaborative selection process ensures cultural compatibility and technical excellence, creating bespoke teams that embody your organizational values and performance standards.</p>
+                </div>
+                <div class="prop-card fade-in">
+                    <div class="prop-icon">
+                        <i class="fas fa-shield-halved"></i>
+                    </div>
+                    <h3>Comprehensive Employment Management</h3>
+                    <p>Leverage our Employer of Record infrastructure to eliminate legal, regulatory, and administrative burdens across international jurisdictions. Retain full operational control while we handle payroll, compliance, HR administration, and risk management.</p>
+                </div>
+                <div class="prop-card fade-in">
+                    <div class="prop-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Premium Cost Optimization</h3>
+                    <p>Realize substantial 40-50% cost reductions compared to domestic hiring without compromising quality or innovation capacity. Our model eliminates traditional outsourcing inefficiencies while delivering superior talent and performance outcomes.</p>
+                </div>
+                <div class="prop-card fade-in">
+                    <div class="prop-icon">
+                        <i class="fas fa-expand"></i>
+                    </div>
+                    <h3>Dynamic Scalability Framework</h3>
+                    <p>Scale your workforce dynamically based on business requirements without employment liabilities or complex contractual negotiations. Achieve rapid team expansion or optimization while maintaining operational continuity and performance standards.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
+
+    <!-- Comparison Section -->
+    <section class="comparison">
+        <div class="container">
+            <h2 class="section-title fade-in">Competitive Differentiation</h2>
+            <p class="section-subtitle fade-in">Understanding the fundamental differences between traditional outsourcing and our innovative Company in a Box model</p>
+            <div class="comparison-grid">
+                <div class="comparison-card traditional fade-in">
+                    <h3>Traditional Outsourcing Limitations</h3>
+                    <ul>
+                        <li>Project managers create communication bottlenecks with shared resource pools</li>
+                        <li>Limited client influence over team composition and personnel stability</li>
+                        <li>Quality compromises driven by cost optimization and billable hour focus</li>
+                        <li>Elevated turnover rates due to resource reallocation between clients</li>
+                        <li>Knowledge fragmentation resulting from distributed work allocation</li>
+                        <li>Misaligned vendor incentives prioritizing revenue over project success</li>
+                        <li>Restricted visibility into operational processes and work quality</li>
+                    </ul>
+                </div>
+                <div class="comparison-card company-box fade-in">
+                    <h3>Company in a Box Excellence</h3>
+                    <ul>
+                        <li>Dedicated teams built exclusively for individual client requirements</li>
+                        <li>Direct workflow integration eliminating communication barriers</li>
+                        <li>Client-controlled team customization with complete composition authority</li>
+                        <li>Stable professional relationships fostering deep business understanding</li>
+                        <li>Seamless collaboration mirroring in-house team dynamics</li>
+                        <li>Complete operational transparency with direct team member access</li>
+                        <li>Aligned success metrics focused on long-term client objectives</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
+
+    <!-- Team Section -->
+    <section class="team" id="team">
+        <div class="container">
+            <h2 class="section-title fade-in">Leadership Team</h2>
+            <p class="section-subtitle fade-in">Experienced professionals driving innovation in global talent solutions</p>
+            <div class="team-grid">
+                <!-- Team Member 1 -->
+                <div class="team-card fade-in">
+                    <div class="team-photo">
+                        <i class="fas fa-user"></i>
+                        <!-- Replace with: <img src="path-to-photo.jpg" alt="Ravindar Gujral"> -->
+                    </div>
+                    <div class="team-info">
+                        <div class="team-name">Ravindar Gujral</div>
+                        <div class="team-title">Founder & CEO</div>
+                        <div class="team-bio">Visionary leader with extensive experience in transforming operations for PE-backed organizations. Successfully led initiatives resulting in $20M cost reductions and EBITDA improvements from -40% to cash flow positive.</div>
+                        <div class="team-links">
+                            <a href="https://linkedin.com/in/username" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="mailto:ravindar@rasrstudioinc.com"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 2 -->
+                <div class="team-card fade-in">
+                    <div class="team-photo">
+                        <i class="fas fa-user"></i>
+                        <!-- Replace with: <img src="path-to-photo.jpg" alt="Team Member Name"> -->
+                    </div>
+                    <div class="team-info">
+                        <div class="team-name">Team Member Name</div>
+                        <div class="team-title">Chief Technology Officer</div>
+                        <div class="team-bio">Technology strategist with proven expertise in building scalable offshore development teams. Specializes in seamless integration of distributed teams with enterprise-grade security and performance standards.</div>
+                        <div class="team-links">
+                            <a href="https://linkedin.com/in/username" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="mailto:email@rasrstudioinc.com"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 3 -->
+                <div class="team-card fade-in">
+                    <div class="team-photo">
+                        <i class="fas fa-user"></i>
+                        <!-- Replace with: <img src="path-to-photo.jpg" alt="Team Member Name"> -->
+                    </div>
+                    <div class="team-info">
+                        <div class="team-name">Team Member Name</div>
+                        <div class="team-title">Head of Operations</div>
+                        <div class="team-bio">Operations excellence leader focused on delivering seamless client experiences and maintaining the highest quality standards across all international engagements and compliance requirements.</div>
+                        <div class="team-links">
+                            <a href="https://linkedin.com/in/username" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="mailto:email@rasrstudioinc.com"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 4 -->
+                <div class="team-card fade-in">
+                    <div class="team-photo">
+                        <i class="fas fa-user"></i>
+                        <!-- Replace with: <img src="path-to-photo.jpg" alt="Team Member Name"> -->
+                    </div>
+                    <div class="team-info">
+                        <div class="team-name">Team Member Name</div>
+                        <div class="team-title">VP of Business Development</div>
+                        <div class="team-bio">Strategic partnership specialist with expertise in global client relations and market expansion. Drives growth initiatives and maintains long-term client relationships across diverse industry verticals.</div>
+                        <div class="team-links">
+                            <a href="https://linkedin.com/in/username" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="mailto:email@rasrstudioinc.com"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 5 -->
+                <div class="team-card fade-in">
+                    <div class="team-photo">
+                        <i class="fas fa-user"></i>
+                        <!-- Replace with: <img src="path-to-photo.jpg" alt="Team Member Name"> -->
+                    </div>
+                    <div class="team-info">
+                        <div class="team-name">Team Member Name</div>
+                        <div class="team-title">Director of Talent Acquisition</div>
+                        <div class="team-bio">Expert in global talent sourcing and team curation with deep understanding of cross-cultural dynamics. Ensures optimal candidate selection and cultural alignment for client organizations.</div>
+                        <div class="team-links">
+                            <a href="https://linkedin.com/in/username" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="mailto:email@rasrstudioinc.com"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 6 -->
+                <div class="team-card fade-in">
+                    <div class="team-photo">
+                        <i class="fas fa-user"></i>
+                        <!-- Replace with: <img src="path-to-photo.jpg" alt="Team Member Name"> -->
+                    </div>
+                    <div class="team-info">
+                        <div class="team-name">Team Member Name</div>
+                        <div class="team-title">Chief Financial Officer</div>
+                        <div class="team-bio">Financial strategist with extensive experience in cost optimization and international business operations. Oversees financial planning and ensures transparent, efficient resource allocation.</div>
+                        <div class="team-links">
+                            <a href="https://linkedin.com/in/username" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="mailto:email@rasrstudioinc.com"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 7 -->
+                <div class="team-card fade-in">
+                    <div class="team-photo">
+                        <i class="fas fa-user"></i>
+                        <!-- Replace with: <img src="path-to-photo.jpg" alt="Team Member Name"> -->
+                    </div>
+                    <div class="team-info">
+                        <div class="team-name">Team Member Name</div>
+                        <div class="team-title">Head of Compliance & Legal</div>
+                        <div class="team-bio">Legal expert specializing in international employment law and regulatory compliance. Ensures all operations meet the highest standards across multiple jurisdictions and regulatory frameworks.</div>
+                        <div class="team-links">
+                            <a href="https://linkedin.com/in/username" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="mailto:email@rasrstudioinc.com"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
+
+    <!-- Results Section - Fixed Colors -->
+    <section class="results" id="results">
+        <div class="container">
+            <h2 class="section-title">Proven Performance Metrics</h2>
+            <p class="section-subtitle">Demonstrable results from our principal's successful implementation across PE-backed portfolio companies</p>
+            <div class="results-grid">
+                <div class="result-card fade-in">
+                    <div class="result-number">$20M</div>
+                    <p>Total operational cost reduction achieved</p>
+                </div>
+                <div class="result-card fade-in">
+                    <div class="result-number">12</div>
+                    <p>Months to achieve positive cash flow from -40% EBITDA</p>
+                </div>
+                <div class="result-card fade-in">
+                    <div class="result-number">40-50%</div>
+                    <p>Cost optimization versus domestic hiring</p>
+                </div>
+                <div class="result-card fade-in">
+                    <div class="result-number">100%+</div>
+                    <p>Innovation capacity enhancement achieved</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
+
+    <!-- Process Section with Flowchart -->
+    <section class="process" id="process">
+        <div class="container">
+            <h2 class="section-title fade-in">Implementation Methodology</h2>
+            <p class="section-subtitle fade-in">Our proven three-phase approach ensures seamless team integration and immediate operational impact</p>
+            
+            <div class="process-flowchart fade-in">
+                <div class="process-step">
+                    <div class="step-circle">1</div>
+                    <h3>Strategic Team Architecture</h3>
+                    <p>Collaborate in designing and structuring your dedicated team to align with organizational culture, technical requirements, and strategic objectives.</p>
+                </div>
+                
+                <div class="process-arrow arrow-1"></div>
+                
+                <div class="process-step">
+                    <div class="step-circle">2</div>
+                    <h3>Seamless Integration Protocol</h3>
+                    <p>Deploy team members directly into your existing workflows, communication systems, and reporting hierarchies with immediate operational integration.</p>
+                </div>
+                
+                <div class="process-arrow arrow-2"></div>
+                
+                <div class="process-step">
+                    <div class="step-circle">3</div>
+                    <h3>Continuous Excellence Management</h3>
+                    <p>Maintain complete operational oversight while our infrastructure handles all employment logistics and compliance requirements across international jurisdictions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title fade-in">Strategic Partnership Inquiry</h2>
+            <p class="section-subtitle fade-in">Discover how Company in a Box can transform your organization's talent strategy and operational efficiency</p>
+            <div class="contact-info fade-in">
+                <h3>Executive Consultation</h3>
+                <p><i class="fas fa-envelope"></i> <a href="mailto:ravindar@rasrstudioinc.com">ravindar@rasrstudioinc.com</a></p>
+                <p><i class="fas fa-calendar-alt"></i> Schedule a comprehensive strategy session to explore your custom solution</p>
+                <p><i class="fas fa-globe-americas"></i> Serving enterprise clients across the United States</p>
+                <p><i class="fas fa-handshake"></i> Trusted by PE-backed organizations and growth-stage companies</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 RASR Studios Inc. All rights reserved. | Revolutionizing Global Talent Solutions</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Fade in animation on scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        fadeElements.forEach(element => {
+            observer.observe(element);
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(26, 54, 93, 0.95)';
+                header.style.backdropFilter = 'blur(20px)';
+            } else {
+                header.style.background = 'var(--primary-color)';
+            }
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.5;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${rate}px)`;
+            }
+        });
+    </script>
+</body>
+</html>

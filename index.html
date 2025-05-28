@@ -493,7 +493,9 @@
         .team-links {
             display: flex;
             justify-content: center;
+            align-items: center;
             gap: 0.8rem;
+            height: 45px;
         }
 
         .team-links a {
@@ -758,41 +760,80 @@
             background: none;
             border: none;
             color: white;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             cursor: pointer;
+            padding: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-btn:hover {
+            transform: scale(1.1);
         }
 
         /* Responsive */
         @media (max-width: 768px) {
+            .hero {
+                height: 100vh;
+                padding-top: 80px;
+            }
+            
             .hero h1 {
-                font-size: 2.8rem;
+                font-size: 2.2rem;
+                margin-bottom: 1rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+                padding: 0 10px;
             }
             
             .hero-buttons {
                 flex-direction: column;
                 align-items: center;
+                width: 100%;
+                padding: 0 20px;
+            }
+            
+            .cta-button {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+                padding: 15px 25px;
             }
             
             .mobile-menu-btn {
                 display: block;
+                z-index: 1001;
             }
             
             .nav-links {
-                position: absolute;
-                top: 100%;
+                position: fixed;
+                top: 0;
                 left: 0;
                 width: 100%;
+                height: 100vh;
                 background: var(--primary-color);
                 flex-direction: column;
-                padding: 1rem 0;
-                transform: translateY(-100%);
-                opacity: 0;
-                transition: all 0.3s ease;
+                padding: 5rem 2rem 2rem;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                z-index: 999;
+                overflow-y: auto;
+                gap: 1rem;
+                justify-content: flex-start;
+                align-items: flex-start;
             }
             
             .nav-links.active {
-                transform: translateY(0);
-                opacity: 1;
+                transform: translateX(0);
+            }
+            
+            .nav-links a {
+                width: 100%;
+                padding: 1rem;
+                border-radius: 8px;
+                font-size: 1.1rem;
             }
             
             .comparison-grid {
@@ -820,6 +861,14 @@
 
             .section-title {
                 font-size: 2.2rem;
+            }
+            
+            .scroll-indicator {
+                bottom: 20px;
+            }
+            
+            .hero-content {
+                padding: 0 10px;
             }
         }
 
@@ -1168,9 +1217,27 @@
         // Mobile menu toggle
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const navLinks = document.querySelector('.nav-links');
+        const menuIcon = mobileMenuBtn.querySelector('i');
 
         mobileMenuBtn.addEventListener('click', () => {
             navLinks.classList.toggle('active');
+            // Toggle icon between bars and X
+            if (navLinks.classList.contains('active')) {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-times');
+            } else {
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            }
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            });
         });
 
         // Smooth scrolling for navigation links
@@ -1183,7 +1250,6 @@
                         behavior: 'smooth'
                     });
                 }
-                navLinks.classList.remove('active');
             });
         });
 
@@ -1215,13 +1281,15 @@
             }
         });
 
-        // Parallax effect for hero section
+        // Parallax effect for hero section - disable on mobile
         window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const rate = scrolled * -0.5;
-            const hero = document.querySelector('.hero');
-            if (hero) {
-                hero.style.transform = `translateY(${rate}px)`;
+            if (window.innerWidth > 768) {
+                const scrolled = window.pageYOffset;
+                const rate = scrolled * -0.5;
+                const hero = document.querySelector('.hero');
+                if (hero) {
+                    hero.style.transform = `translateY(${rate}px)`;
+                }
             }
         });
     </script>
